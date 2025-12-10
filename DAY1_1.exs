@@ -6,7 +6,7 @@ defmodule Day1 do
 			else
 				acc[:count] 
 			end
-		case String.trim(line) do 
+		case line do 
 			"L" <> x -> [count: newcount, pos: acc[:pos] - String.to_integer(x)]
 			"R" <> x -> [count: newcount, pos: acc[:pos] + String.to_integer(x)]
 		end
@@ -14,5 +14,6 @@ defmodule Day1 do
 end
 
 File.stream!("input_1_1", [:read]) \
+|> Enum.map(&String.trim/1)
 |> Enum.reduce([count: 0, pos: 50], &Day1.parse/2) \
 |> IO.inspect
